@@ -2,18 +2,16 @@
     padding: 12px;
     align-items: flex-start;
     display: block;
-    width: 50%;
     box-sizing: border-box;
     margin-top: 24px;
     border-color: #0085FF;
     outline-color: #0085FF;
 }
 
-.login-form {
+.lsignup-login-image {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: stretch;
     align-self: stretch;
 }
 
@@ -22,7 +20,6 @@
     box-sizing: border-box;
     border: none;
     outline-color: #0085FF;
-    width: 50%;
     color: #fff;
     padding: 12px;
     margin-top: 12px;
@@ -33,15 +30,15 @@
     flex-direction: column;
     align-items: center;
     margin-top: 36px;
+    padding-inline: 12px;
 }
 
-.signup-form {
+.signup-login-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+    align-items: stretch;
     align-self: stretch;
+    padding-inline: 12px;
 }
 
 .signup-button {
@@ -49,12 +46,22 @@
     box-sizing: border-box;
     border: none;
     outline-color: #0085FF;
-    width: 50%;
     color: #fff;
     padding: 12px;
     margin-top: 12px;
 }
 
 .signup-login-image {
-    
+    height: 170px;
+    flex-shrink: 0;
+    object-fit: contain;
+    object-position: center;
+}
+
+.form-wrapper {
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
 }

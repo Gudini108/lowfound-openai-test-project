@@ -2,6 +2,8 @@
 
 ### How to lauch this project:
 
+you need Python, preferably latest version.
+
 1. Clone this repo and move to project main directory:
     - git clone git@github.com:Gudini108/lowfound-openai-test-project.git
     - cd lowfound_openai
@@ -23,10 +25,12 @@ for windows based system:
 4. Install requirements.txt
     - pip install -r requirements.txt
 
-5. Make migrations:
+5. Make migrations and migrate:
+    - python3 manage.py makemigrations
     - python3 manage.py migrate
 
 for windows based system:
+    - python manage.py makemigrations
     - python manage.py migrate
 
 6. Lauch project:
@@ -35,4 +39,14 @@ for windows based system:
 for windows based system:
     - python manage.py runserver
 
+
 Main page is available at http://127.0.0.1:8000/
+
+
+To gain access to OpenAI:
+
+1. Create file `.env`
+
+2. Add line `AI_API_KEY = 'YOUR_API_KEY'` to `.env` file
+
+3. Congratulations!

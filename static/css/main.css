@@ -3,6 +3,7 @@ main {
     flex-direction: column;
     flex-grow: 1;
     height: 100%;
+    align-items: center;
 }
 
 body {
@@ -14,7 +15,6 @@ body {
 
 header {
     background-color: #0085FF;
-    padding: 36px 24px;
     text-align: center;
     color: #FFF;
     font-size: 20px;
@@ -24,4 +24,18 @@ header {
     line-height: normal;
     display: flex;
     justify-content: center;
+    align-self: stretch;
+}
+
+.header-inner {
+    padding: 36px 24px;
+    max-width: 600px;
+    flex: 1;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+.default-title {
+    flex: 1;
 }

@@ -58,9 +58,14 @@ textarea {
 }
 
 .send-question-form {
-    margin: 12px 0;
     position: relative;
     padding: 12px;
+    max-width: 600px;
+    margin-block: 12px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .send-question-text {
@@ -87,6 +92,7 @@ textarea {
     display: flex;
     overflow: auto;
     flex: 1;
+    max-width: 600px;
 }
 
 .send-question-text:not(:valid) + .send-question-button {
@@ -99,8 +105,7 @@ textarea {
 }
 
 .second-header {
-    display: flex;
-    align-items: center;
+    flex: 1;
 }
 
 .logout-button {
@@ -111,7 +116,5 @@ textarea {
     font-weight: 400;
     line-height: normal;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    margin-left: auto;
+    margin-left: 10px;
 }

@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
   <head>
     <meta charset='utf-8'>
-    <meta name='viewpoint' content='widt=device-width, initial-scale=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>
       {% block title %}
         Lowfound OpenAI API Chat
@@ -14,9 +14,13 @@
   <body>
     <main>
       <header>
-        {% block header %}
-          Lowfound OpenAI API Chat
-        {% endblock header %}
+        <div class='header-inner'>
+          {% block header %}
+          <div class='default-title'>
+            Lowfound OpenAI API Chat
+          </div>
+          {% endblock header %}
+        </div>
       </header>
       {% block content %}
       {% endblock content %}

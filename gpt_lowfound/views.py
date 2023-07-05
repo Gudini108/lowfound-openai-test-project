@@ -19,7 +19,7 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = User.objects.get(username=username)
+        user = get_object_or_404(User, username=username)
         if user and check_password(password, user.password):
             login(request, user)
             return redirect('lowfoundai', username=user.username)
