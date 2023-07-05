@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en'>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewpoint' content='widt=device-width, initial-scale=1'>
+    <title>
+      {% block title %}
+        Lowfound OpenAI API Chat
+      {% endblock %}
+    </title>
+  </head>
+  <body>
+    <main>
+      <header>
+        {% block header %}
+          Lowfound OpenAI API Chat
+        {% endblock header %}
+      </header>
+      {% block content %}
+      {% endblock content %}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/signup-login.css' %}" />
+<img class='signup-login-image' src="{% static 'img/signup-login-screen.jpg' %}">
+  <form class='login-form' action="{% url 'login' %}" method='post'>
+    {% csrf_token %}
+      <input class='signup-login-input-field' 
+      placeholder='Username' type='text' id='login-username' name='username' required>
+      <input class='signup-login-input-field' 
+      placeholder='Password' type='password' id='login-password' name='password' required>
+    <input class='login-button' type='submit' value='Login'>
+  </form>
+
+  <p class='middle-message'>or sign up if you don't have an account yet</p>
+
+  <form class='signup-form' action="{% url 'signup' %}" method='post'>
+    {% csrf_token %}
+      <input class='signup-login-input-field' 
+      placeholder='Username' type='text' id='signup-username' name='username' required>
+      <input class='signup-login-input-field' 
+      placeholder='Password' type='password' id='signup-password' name='password' required>
+    <input class='signup-button' type='submit' value='Signup'>
+  </form>
+{% endblock content %}

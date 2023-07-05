@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block header %}
+  <span class='second-header'>Lowfound OpenAI API Chat</span>
+  <a class='logout-button' href="{% url 'logout' %}">Logout</a>
+{% endblock header %}
+{% block content %}
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/lowfound-openai.css' %}" />
+  <div class='section-wrapper'>
+    <section class='history-section'>
+      {% if posts|length == 0 %}
+        <div class='empty-message'>Your chat is empty. Send your first message to start a chat.</div>
+      {% endif %}
+      {% for post in posts %}
+        <article class='post'>
+          <time class='time-created' datetime="{{ post.created|date:'d F Y H:i' }}">
+            {{ post.created|date:'d F Y H:i' }}
+          </time>
+          <div>
+            <h4 class='post-header'>You asked:</h4>
+            <span class='post-text'>
+              {{ post.question }}
+            </span>
+          </div>
+          <div>
+            <h4 class='post-header'>GPT responded:</h4>
+            <span class='post-text'>
+              {{ post.answer }}
+            </span>
+          </div>
+          <a class='delete-link' href="{% url 'post_delete' post.id %}">
+              Delete
+          </a>
+        </article>
+      {% endfor %}
+    </section>
+  </div>
+  <form class='send-question-form' action="{% url 'post_create' %}" method='post'>
+    {% csrf_token %}
+      <textarea class='send-question-text' autofocus rows=3 placeholder='Type your message here...' id='api-question' name='question' required></textarea>
+    <input class='send-question-button' type='submit' value='Send'>
+  </form>
+{% endblock %}
