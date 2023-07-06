@@ -7,7 +7,7 @@ you would need Python, preferably latest version.
 
 1. Clone this repo and move to project main directory:
     - git clone git@github.com:Gudini108/lowfound-openai-test-project.git
-    - cd lowfound_openai
+    - cd lowfound-openai-test-project
 
 
 2. Create and activate virtual enviroment:
