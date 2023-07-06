@@ -13,7 +13,13 @@
       <input class='login-button' type='submit' value='Login'>
     </form>
 
-    <p class='middle-message'>or sign up if you don't have an account yet</p>
+    {% if messages %}
+      {% for message in messages %}
+        <p class='middle-message' style="color: red; font-weight: bold;">{{ message }}</p>
+      {% endfor %}
+    {% else %}
+      <p class='middle-message'>or sign up if you don't have an account yet</p>
+    {% endif %}
 
     <form class='signup-login-form' action="{% url 'signup' %}" method='post'>
       {% csrf_token %}

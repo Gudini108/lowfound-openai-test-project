@@ -1,14 +1,15 @@
-import os
 import openai
-from django.contrib.auth import login, logout
+from django.db import IntegrityError
+from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.hashers import check_password
 
 from .models import User, Post
 
-openai.api_key = os.getenv('AI_API_KEY ')
+openai.api_key = 'AI_API_KEY'
 AI_MODEL = 'gpt-3.5-turbo'
+USER_ROLE = 'user'
 
 
 def home(request):
@@ -19,10 +20,11 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = get_object_or_404(User, username=username)
-        if user and check_password(password, user.password):
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
             login(request, user)
             return redirect('lowfoundai', username=user.username)
+        messages.error(request, 'Invalid username or password3')
     return redirect('home')
 
 
@@ -35,10 +37,15 @@ def signup_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = User.objects.create_user(username, password=password)
-        login(request, user)
-        return redirect('lowfoundai', username=username)
-    return render(request, 'home')
+        try:
+            user = User.objects.create_user(username, password=password)
+            login(request, user)
+            return redirect('lowfoundai', username=username)
+        except IntegrityError:
+            messages.error(
+                request, 'User with this username or password already exists')
+            return render(request, 'login-signup.html')
+    return redirect('home')
 
 
 @login_required
@@ -64,13 +71,16 @@ def post_create(request):
     question = request.POST.get('question')
     username = request.user.username
     try:
-        response = openai.Completion.create(
+        response = openai.ChatCompletion.create(
             model=AI_MODEL,
-            prompt=question
+            messages=[
+                {"role": USER_ROLE, "content": question}
+                ]
         )
-        answer = response.choices[0].text.strip()
+        answer = response.choices[0].message
     except Exception as e:
-        answer = f"Error: {str(e)}"
+        messages.error(request, str(e))
+        return redirect('lowfoundai', username)
     Post.objects.create(
         author=request.user,
         question=question,

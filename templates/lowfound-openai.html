@@ -8,8 +8,14 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/lowfound-openai.css' %}" />
   <div class='section-wrapper'>
     <section class='history-section'>
-      {% if posts|length == 0 %}
-        <div class='empty-message'>Your chat is empty. Send your first message to start a chat.</div>
+      {% if messages %}
+        {% for message in messages  %}
+          <div class='empty-message' style="color: red; font-weight: bold;">{{ message }}</div>
+        {% endfor %}
+      {% else %} 
+        {% if posts|length == 0 %}
+          <div class='empty-message'>Your chat is empty. Send your first message to start a chat.</div>
+        {% endif %}
       {% endif %}
       {% for post in posts %}
         <article class='post'>
