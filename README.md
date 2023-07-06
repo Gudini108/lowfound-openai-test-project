@@ -56,3 +56,17 @@ for windows based system:
 
 
 10. Register as a new user and enter your question to the AI.
+
+
+### To run this project again:
+
+1. Move to project main directory:
+     - cd lowfound-openai-test-project
+  
+2. Run server via this command:
+     - python3 manage.py runserver
+
+for windows based system:
+    - python manage.py runserver
+
+3. Access main page at http://127.0.0.1:8000/
